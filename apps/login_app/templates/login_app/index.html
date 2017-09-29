@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        #main_div {
+            text-align: center; 
+        }
+        .div {
+            border: 1px solid black;
+            width: 45%;
+            height: 330px;
+            padding-left: 30px;
+            display: inline-block;
+            vertical-align: top;
+            margin: 15px; 
+        }
+        h1 {
+            text-align: center;
+        }
+        #notice {
+            margin: 0px;
+            color: red;
+        }
+    </style>
+    <title>Log In</title>
+</head>
+<body>
+    <div id="main_div">
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{message}}</p>
+            {% endfor %}
+        {% endif %}
+        <div>
+            <h1>Python  | EXAM: POKES FOR DAYS YO! |  Django</h1>
+        </div>
+        <div class="div">
+            <h2>Registration</h2>
+            <form action="/register" method="post">
+                {%csrf_token%}
+                <label for="">First Name: <input type="text" name="first_name" placeholder="First Name"></label><br>
+                <label for="">Last Name: <input type="text" name="last_name" placeholder="Last Name"></label><br>
+                <label for="">Alias: <input type="text" name="alias" placeholder="Alias"></label><br>
+                <label for="">E-mail: <input type="text" name="email" placeholder="email"></label><br>
+                <label for="">Password: <input type="text" name="password" placeholder="Password"></label><br>
+                <p id="notice">*Password should be at least 8 Characters</p>
+                <label for="">Confirm Password: <input type="text" name="c_password" placeholder="Confirm Password"></label><br>
+                <label for="">Date of Birth: <input type="date" name="bday" max="2017-09-27"></label><br>
+                <input type="submit" value="submit">
+            </form>
+        </div>
+        <div class="div">
+            <h2>Log In</h2>
+            <form action="/login" method="post">
+                    {%csrf_token%}
+                <label for="">E-Mail: <input type="text" name="email" placeholder="Enter Your Email"></label><br>
+                <label for="">Password: <input type="text" name="password" placeholder="Enter Your Password"></label><br>
+                <input type="submit" value="Log In">
+            </form>
+        </div>
+        <div id="footer">
+            <p>Coding Dojo | Paul Franco | Python Belt</p>
+        </div>
+    </div>
+</body>
+</html>

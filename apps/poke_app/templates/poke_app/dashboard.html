@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        #top_left_div {
+            margin-left: 25px;
+            width: 45%;
+            text-align: left;
+            display: inline-block;
+        }
+        #top_right_div {
+            width: 45%;
+            text-align: right;
+            display: inline-block;
+        }
+        #other_users_div {
+            width: 90%;
+            border: 1px solid black;
+        }
+        #table {
+            padding: 1px;
+            margin: 0px;
+        }
+        #people_who_poked {
+            border: 2px solid black;
+            width: 25%;
+        }
+    </style>
+    <title>Dashboard</title>
+</head>
+<body>
+    <div>
+        <div id="top_left_div">
+            <h1>Dashboard</h1>
+        </div>
+        <div id="top_right_div">
+            <p><a href="/logout">Log Out</a></p>
+        </div>
+        <div>
+            <h3>Hello {{curr_user.first_name}} {{curr_user.last_name}} !</h3>
+            <p>Lucky You! <b>{{curr_user.got_poked.all.count}}</b> People have poked you! </p>
+            <div id="people_who_poked">
+                {%for user in me%}
+                    <p><b>{{user.first_name}}</b> Poked You ___ Times!</p>
+                {%endfor%}
+            </div>
+
+            <h3>People that you may want to poke: </h3>
+            <div id="other_users_div">
+                <table>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Alias</th>
+                        <th>Email Address:</th>
+                        <th>Poke History</th>
+                        <th>Action</th>
+                    </tr>
+                </table>
+                {%for user in other_users%}
+                <div id="table"><p>{{user.first_name}} | {{user.last_name}} | {{user.alias}} | {{user.email}} | Poke Count: <b>{{user.got_poked.all.count}}</b> | <a href="/poke/give/{{user.id}}"> Poke Me!</a> </b></p></div>
+            {%endfor%}
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
